@@ -23,27 +23,64 @@ namespace adas
             // 指令是M指令
             if (cmd == 'M')
             {
-                if (pose.heading == 'E') {++pose.x;}
-                else if(pose.heading =='W'){--pose.x;}
-                else if(pose.heading =='N'){++pose.y;}
-                else if(pose.heading =='S'){--pose.y;}
+                if (pose.heading == 'E')
+                {
+                    ++pose.x;
+                }
+                else if (pose.heading == 'W')
+                {
+                    --pose.x;
+                }
+                else if (pose.heading == 'N')
+                {
+                    ++pose.y;
+                }
+                else if (pose.heading == 'S')
+                {
+                    --pose.y;
+                }
             }
             // 指令是L指令
             if (cmd == 'L')
             {
-                if (pose.heading == 'E') {pose.heading='N';}
-                else if(pose.heading =='W'){pose.heading='S';}
-                else if(pose.heading =='N'){pose.heading='W';}
-                else if(pose.heading =='S'){pose.heading='E';}
+                if (pose.heading == 'E')
+                {
+                    pose.heading = 'N';
+                }
+                else if (pose.heading == 'W')
+                {
+                    pose.heading = 'S';
+                }
+                else if (pose.heading == 'N')
+                {
+                    pose.heading = 'W';
+                }
+                else if (pose.heading == 'S')
+                {
+                    pose.heading = 'E';
+                }
             }
             // 指令是R指令
             if (cmd == 'R')
             {
-                if (pose.heading == 'E') {pose.heading='S';}
-                else if(pose.heading =='W'){pose.heading='N';}
-                else if(pose.heading =='N'){pose.heading='E';}
-                else if(pose.heading =='S'){pose.heading='W';}
+                if (pose.heading == 'E')
+                {
+                    pose.heading = 'S';
+                }
+                else if (pose.heading == 'W')
+                {
+                    pose.heading = 'N';
+                }
+                else if (pose.heading == 'N')
+                {
+                    pose.heading = 'E';
+                }
+                else if (pose.heading == 'S')
+                {
+                    pose.heading = 'W';
+                }
             }
+            // end
         }
     }
 } // namespace adas
