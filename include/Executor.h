@@ -29,6 +29,8 @@ namespace adas
     public:
         // 查询当前汽车姿态(接口)
         virtual Pose Query(void) const noexcept = 0;
+        // 执行指令方法(接口)
+        virtual void Execute(const std::string &commands) noexcept = 0;
     };
 
 } // namespace adas

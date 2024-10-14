@@ -21,6 +21,8 @@ namespace adas
     public:
         // 查询车辆状态,抽象方法具体实现
         Pose Query(void) const noexcept override;
+        // 汽车执行指令,抽象方法具体实现
+        void Execute(const std::string &commands) noexcept override;
 
     private:
         // 私有数据成员
