@@ -171,4 +171,19 @@ namespace adas
         const Pose target({0, 0, 'E'});
         ASSERT_EQ(target, executor->Query());
     }
+
+    // 随机数据测试
+    // 测试用例15
+    TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E_and_XY_is_rand)
+    {
+        // given 给定测试条件
+        int TestX = rand() % 10 + 1;
+        int TestY = rand() % 10 + 1;
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({TestX, TestY, 'E'})); // 无初始
+        // when
+        executor->Execute("M");
+        // then
+        const Pose target({TestX + 1, TestY, 'E'});
+        ASSERT_EQ(target, executor->Query());
+    }
 }
