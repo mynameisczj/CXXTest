@@ -39,7 +39,7 @@ namespace adas
     TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
         // when
         executor->Execute("M");
         // then
@@ -50,7 +50,7 @@ namespace adas
     TEST(ExecutorTest, should_return_x_minus_1_given_command_is_M_and_facing_is_W)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'}));
         // when
         executor->Execute("M");
         // then
@@ -61,7 +61,7 @@ namespace adas
     TEST(ExecutorTest, should_return_y_plus_1_given_command_is_M_and_facing_is_N)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'}));
         // when
         executor->Execute("M");
         // then
@@ -72,7 +72,7 @@ namespace adas
     TEST(ExecutorTest, should_return_y_minus_1_given_command_is_M_and_facing_is_S)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'}));
         // when
         executor->Execute("M");
         // then
@@ -85,7 +85,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_N_given_command_is_L_and_facing_is_E)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
         // when
         executor->Execute("L");
         // then
@@ -96,7 +96,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_W_given_command_is_L_and_facing_is_N)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'}));
         // when
         executor->Execute("L");
         // then
@@ -107,7 +107,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_S_given_command_is_L_and_facing_is_W)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'}));
         // when
         executor->Execute("L");
         // then
@@ -118,7 +118,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_E_given_command_is_L_and_facing_is_S)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'}));
         // when
         executor->Execute("L");
         // then
@@ -131,7 +131,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_S_given_command_is_R_and_facing_is_E)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
         // when
         executor->Execute("R");
         // then
@@ -142,7 +142,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_W_given_command_is_R_and_facing_is_S)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'}));
         // when
         executor->Execute("R");
         // then
@@ -153,7 +153,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_N_given_command_is_R_and_facing_is_W)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'W'}));
         // when
         executor->Execute("R");
         // then
@@ -164,7 +164,7 @@ namespace adas
     TEST(ExecutorTest, should_return_facing_E_given_command_is_R_and_facing_is_N)
     {
         // given 给定测试条件
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'})); // 无初始
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'N'}));
         // when
         executor->Execute("R");
         // then
@@ -174,16 +174,16 @@ namespace adas
 
     // 随机数据测试
     // 测试用例15
-    TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E_and_XY_is_rand)
+    TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E_and_pose_is_rand)
     {
         // given 给定测试条件
-        int TestX = rand() % 10 + 1;
-        int TestY = rand() % 10 + 1;
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({TestX, TestY, 'E'})); // 无初始
+        int testX = rand() % 10 + 1;
+        int testY = rand() % 10 + 1;
+        std::unique_ptr<Executor> executor(Executor::NewExecutor({testX, testY, 'E'})); 
         // when
         executor->Execute("M");
         // then
-        const Pose target({TestX + 1, TestY, 'E'});
+        const Pose target({testX + 1, testY, 'E'});
         ASSERT_EQ(target, executor->Query());
     }
 }
