@@ -23,22 +23,7 @@ namespace adas
             // 指令是M指令
             if (cmd == 'M')
             {
-                if (pose.heading == 'E')
-                {
-                    ++pose.x;
-                }
-                else if (pose.heading == 'W')
-                {
-                    --pose.x;
-                }
-                else if (pose.heading == 'N')
-                {
-                    ++pose.y;
-                }
-                else if (pose.heading == 'S')
-                {
-                    --pose.y;
-                }
+                Move();
             }
             // 指令是L指令
             if (cmd == 'L')
@@ -82,5 +67,19 @@ namespace adas
             }
             // end
         }
+    }
+    void ExecutorImpl::Move() noexcept{
+        if (pose.heading == 'E'){
+                    ++pose.x;
+                }
+                else if (pose.heading == 'W'){
+                    --pose.x;
+                }
+                else if (pose.heading == 'N'){
+                    ++pose.y;
+                }
+                else if (pose.heading == 'S'){
+                    --pose.y;
+                }
     }
 } // namespace adas

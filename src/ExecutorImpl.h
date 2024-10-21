@@ -6,7 +6,7 @@ namespace adas
     /*
     Executor具体实现
     */
-    class ExecutorImpl : public Executor
+    class ExecutorImpl final: public Executor
     {
     public:
         // 构造函数
@@ -27,6 +27,8 @@ namespace adas
     private:
         // 私有数据成员
         Pose pose;
+    private:
+        void Move(void) noexcept;
     };
 
 } // namespace adas/
