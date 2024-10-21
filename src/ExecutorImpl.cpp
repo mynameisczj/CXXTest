@@ -21,23 +21,25 @@ namespace adas
     {
         for (const auto cmd : commands)
         {
+            std::unique_ptr<ICommand> cmder;
             // 指令是M指令
             if (cmd == 'M')
             {
-                std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
-                cmder->DoOperate(*this); //执行MoveCommand的DoOperate，即Move
+                cmder = std::make_unique<MoveCommand>();
             }
             // 指令是L指令
             if (cmd == 'L')
             {
-                std::unique_ptr<TurnLeftCommand> cmder = std::make_unique<TurnLeftCommand>();
-                cmder->DoOperate(*this); //执行TurnLeftCommand的DoOperate，即TurnLeft
+                cmder = std::make_unique<TurnLeftCommand>();
             }
             // 指令是R指令
             if (cmd == 'R')
             {
-                std::unique_ptr<TurnRightCommand> cmder = std::make_unique<TurnRightCommand>();
-                cmder->DoOperate(*this); //执行TurnRightCommand的DoOperate，即TurnRight
+                cmder = std::make_unique<TurnRightCommand>();
+            }
+            if(cmder)
+            {
+                cmder->DoOperate(*this);
             }
             // end
         }

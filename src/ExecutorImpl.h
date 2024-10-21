@@ -28,7 +28,14 @@ namespace adas
         // 私有数据成员
         Pose pose;
     private:
-        class MoveCommand final //定义一个嵌套类MoveCommand，完成Move动作（M指令）
+        class ICommand
+        {
+            public:
+            virtual ~ICommand()=default;
+            virtual void DoOperate(ExecutorImpl & executor)const noexcept =0;
+        };
+        
+        class MoveCommand final :public ICommand//定义一个嵌套类MoveCommand，完成Move动作（M指令）
         {
             public:
             //执行Move动作，需要委托ExecutorImp&执行器来完成动作
@@ -37,7 +44,7 @@ namespace adas
                 executor.Move();
             }
         };
-        class TurnLeftCommand final //定义一个嵌套类TurnLeftCommand，完成TurnLeft动作（L指令）
+        class TurnLeftCommand final :public ICommand//定义一个嵌套类TurnLeftCommand，完成TurnLeft动作（L指令）
         {
             public:
             //执行TurnLeft动作，需要委托ExecutorImp&执行器来完成动作
@@ -46,7 +53,7 @@ namespace adas
                 executor.TurnLeft();
             }
         };
-        class TurnRightCommand final //定义一个嵌套类TurnRightCommand，完成TurnRight动作（R指令）
+        class TurnRightCommand final :public ICommand//定义一个嵌套类TurnRightCommand，完成TurnRight动作（R指令）
         {
             public:
             //执行TurnRight动作，需要委托ExecutorImp&执行器来完成动作
