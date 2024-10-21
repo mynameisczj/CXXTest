@@ -1,5 +1,6 @@
 #include "ExecutorImpl.h"
 #include <new>
+#include<memory>
 namespace adas
 {
     ExecutorImpl::ExecutorImpl(const Pose &pose) noexcept : pose(pose) {}
@@ -23,7 +24,8 @@ namespace adas
             // 指令是M指令
             if (cmd == 'M')
             {
-                Move();
+                std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
+                cmder->DoOperate(*this); //执行MoveCommand的DoOperate，即Move
             }
             // 指令是L指令
             if (cmd == 'L')

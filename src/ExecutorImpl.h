@@ -28,6 +28,17 @@ namespace adas
         // 私有数据成员
         Pose pose;
     private:
+        class MoveCommand final //定义一个嵌套类MoveCommand，完成Move动作（M指令）
+        {
+            public:
+            //执行Move动作，需要委托ExecutorImp&执行器来完成动作
+            void DoOperate(ExecutorImpl&executor) const noexcept
+            {
+                executor.Move();
+            }
+        };
+
+    private:
         void Move(void) noexcept;
         void TurnLeft(void) noexcept;
         void TurnRight(void) noexcept;
