@@ -37,13 +37,22 @@ namespace adas
                 executor.Move();
             }
         };
-        class TurnLeftCommand final //定义一个嵌套类TurnLeftCommand，完成TurnLeft动作（M指令）
+        class TurnLeftCommand final //定义一个嵌套类TurnLeftCommand，完成TurnLeft动作（L指令）
         {
             public:
             //执行TurnLeft动作，需要委托ExecutorImp&执行器来完成动作
             void DoOperate(ExecutorImpl&executor) const noexcept
             {
                 executor.TurnLeft();
+            }
+        };
+        class TurnRightCommand final //定义一个嵌套类TurnRightCommand，完成TurnRight动作（R指令）
+        {
+            public:
+            //执行TurnRight动作，需要委托ExecutorImp&执行器来完成动作
+            void DoOperate(ExecutorImpl&executor) const noexcept
+            {
+                executor.TurnRight();
             }
         };
 
