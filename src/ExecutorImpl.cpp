@@ -30,7 +30,8 @@ namespace adas
             // 指令是L指令
             if (cmd == 'L')
             {
-                TurnLeft();
+                std::unique_ptr<TurnLeftCommand> cmder = std::make_unique<TurnLeftCommand>();
+                cmder->DoOperate(*this); //执行TurnLeftCommand的DoOperate，即TurnLeft
             }
             // 指令是R指令
             if (cmd == 'R')
