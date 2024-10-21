@@ -27,6 +27,7 @@ namespace adas
     private:
         // 私有数据成员
         Pose pose;
+        bool fast{false};
     private:
         class ICommand
         {
@@ -62,11 +63,23 @@ namespace adas
                 executor.TurnRight();
             }
         };
+        class FastCommand final :public ICommand//定义一个嵌套类FastCommand，完成Fast动作（F指令）
+        {
+            public:
+            //执行Fast动作，需要委托ExecutorImp&执行器来完成动作
+            void DoOperate(ExecutorImpl&executor) const noexcept
+            {
+                executor.Fast();
+            }
+        };
 
     private:
         void Move(void) noexcept;
         void TurnLeft(void) noexcept;
         void TurnRight(void) noexcept;
+
+        void Fast(void)noexcept;//切换加速状态
+        bool IsFast(void)noexcept;//查询是否
     };
 
 } // namespace adas/

@@ -37,6 +37,11 @@ namespace adas
             {
                 cmder = std::make_unique<TurnRightCommand>();
             }
+            //指令是F指令
+            if (cmd == 'F')
+            {
+                cmder = std::make_unique<FastCommand>();
+            }
             if(cmder)
             {
                 cmder->DoOperate(*this);
@@ -45,6 +50,7 @@ namespace adas
         }
     }
     void ExecutorImpl::Move() noexcept{
+        for(auto i=0;i<=fast;i++)
         if (pose.heading == 'E'){
             ++pose.x;
         }
@@ -85,5 +91,11 @@ namespace adas
         else if (pose.heading == 'S'){
             pose.heading = 'W';
         }
+    }
+    void ExecutorImpl::Fast() noexcept{
+        fast=(fast?false:true);
+    }
+    bool ExecutorImpl::IsFast() noexcept{
+        return this->fast;
     }
 } // namespace adas
