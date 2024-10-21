@@ -65,6 +65,12 @@ namespace adas
         }
     }
     void ExecutorImpl::TurnLeft() noexcept{
+        if(fast)
+        {
+            fast=false;
+            Move();
+            fast=true;
+        }
         if (pose.heading == 'E'){
             pose.heading = 'N';
         }

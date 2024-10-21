@@ -36,7 +36,7 @@ namespace adas
     TEST(ExecutorFastTest,should_return_y_plus_1_given_command_is_FFM_and_facing_is_N)
     {
         // given
-        std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
+        std::unique_ptr<Executor> executor(Executor::NewExecutor());
         // when
         executor->Execute("FFM"); //FFM: FF状态下Move
         // then
