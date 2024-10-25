@@ -47,7 +47,7 @@ class ExecutorImpl final : public Executor {
   void TurnLeft(void) noexcept;   // 左转指令（L指令）
   void TurnRight(void) noexcept;  // 右转指令（R指令）
   void Fast(void) noexcept;       // 切换加速状态指令（F指令）
-  bool IsFast(void) noexcept;     // 查询是否
+  bool IsFast(void) noexcept;     // 查询是否处于高速状态
 
  public:
   explicit ExecutorImpl(const Pose &pose) noexcept;
