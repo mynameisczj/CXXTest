@@ -27,25 +27,44 @@ void ExecutorImpl::Execute(const std::string &commands) noexcept {
     }
   }
 }
+void ExecutorImpl::MoveCommand::DoOperate(
+    ExecutorImpl &executor) const noexcept {
+  if (executor.fast) {
+    executor.Move();
+  }
+    executor.Move();
+}
+void ExecutorImpl::TurnLeftCommand::DoOperate(
+    ExecutorImpl &executor) const noexcept {
+  if (executor.fast) {
+    executor.Move();
+  }
+  executor.TurnLeft();
+}
+void ExecutorImpl::TurnRightCommand::DoOperate(
+    ExecutorImpl &executor) const noexcept {
+  if (executor.fast) {
+    executor.Move();
+  }
+  executor.TurnRight();
+}
+void ExecutorImpl::FastCommand::DoOperate(
+    ExecutorImpl &executor) const noexcept {
+  executor.Fast();
+}
+
 void ExecutorImpl::Move() noexcept {
-  for (auto i = 0; i <= fast; i++) {
-    if (pose.heading == 'E') {
-      ++pose.x;
-    } else if (pose.heading == 'W') {
-      --pose.x;
-    } else if (pose.heading == 'N') {
-      ++pose.y;
-    } else if (pose.heading == 'S') {
-      --pose.y;
-    }
+  if (pose.heading == 'E') {
+    ++pose.x;
+  } else if (pose.heading == 'W') {
+    --pose.x;
+  } else if (pose.heading == 'N') {
+    ++pose.y;
+  } else if (pose.heading == 'S') {
+    --pose.y;
   }
 }
 void ExecutorImpl::TurnLeft() noexcept {
-  if (fast) {
-    Fast();
-    Move();
-    Fast();
-  }
   if (pose.heading == 'E') {
     pose.heading = 'N';
   } else if (pose.heading == 'W') {
@@ -57,11 +76,6 @@ void ExecutorImpl::TurnLeft() noexcept {
   }
 }
 void ExecutorImpl::TurnRight() noexcept {
-  if (fast) {
-    Fast();
-    Move();
-    Fast();
-  }
   if (pose.heading == 'E') {
     pose.heading = 'S';
   } else if (pose.heading == 'W') {
