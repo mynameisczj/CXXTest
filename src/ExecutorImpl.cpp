@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <new>
+#include <unordered_map>
 
 #include "Command.h"
 namespace adas {
@@ -11,21 +12,16 @@ Executor *Executor::NewExecutor(const Pose &pose) noexcept {
   return new (std::nothrow) ExecutorImpl(pose);  // C++17下有效
 }
 void ExecutorImpl::Execute(const std::string &commands) noexcept {
+  std::unique_ptr<ICommand> cmder;
+  std::unordered_map<char, std::unique_ptr<ICommand>> cmderMap;
+  cmderMap.emplace('M', std::make_unique<MoveCommand>());
+  cmderMap.emplace('L', std::make_unique<TurnLeftCommand>());
+  cmderMap.emplace('R', std::make_unique<TurnRightCommand>());
+  cmderMap.emplace('F', std::make_unique<FastCommand>());
   for (const auto cmd : commands) {
-    std::unique_ptr<ICommand> cmder;
-    // 指令判断
-    if (cmd == 'M') {
-      cmder = std::make_unique<MoveCommand>();
-    } else if (cmd == 'L') {
-      cmder = std::make_unique<TurnLeftCommand>();
-    } else if (cmd == 'R') {
-      cmder = std::make_unique<TurnRightCommand>();
-    } else if (cmd == 'F') {
-      cmder = std::make_unique<FastCommand>();
-    }
-    // 指令执行
-    if (cmder) {
-      cmder->DoOperate(poseHandler);
+    const auto it = cmderMap.find(cmd);
+    if (it != cmderMap.end()) {
+      it->second->DoOperate(poseHandler);
     }
   }
 }
