@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Direction.h"
 #include "Executor.h"
+#include "point.h"
 
 namespace adas {
 class PoseHandler final {
@@ -17,7 +19,8 @@ class PoseHandler final {
   bool IsFast(void) noexcept;       // 查询是否处于高速状态
   Pose Query(void) const noexcept;  // 查询当前位置
  private:
-  Pose pose;         // 汽车当前位置
+  Point point;
+  const Direction* facing;
   bool fast{false};  // 汽车是否处于加速状态
 };
 }  // namespace adas
