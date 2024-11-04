@@ -2,6 +2,8 @@
 
 #include <memory>
 #include <new>
+
+#include "Command.h"
 namespace adas {
 ExecutorImpl::ExecutorImpl(const Pose &pose) noexcept : pose(pose) {}
 Pose ExecutorImpl::Query(void) const noexcept { return pose; }
@@ -27,28 +29,28 @@ void ExecutorImpl::Execute(const std::string &commands) noexcept {
     }
   }
 }
-void ExecutorImpl::MoveCommand::DoOperate(
+void MoveCommand::DoOperate(
     ExecutorImpl &executor) const noexcept {
-  if (executor.fast) {
+  if (executor.IsFast()) {
     executor.Move();
   }
-    executor.Move();
+  executor.Move();
 }
-void ExecutorImpl::TurnLeftCommand::DoOperate(
+void TurnLeftCommand::DoOperate(
     ExecutorImpl &executor) const noexcept {
-  if (executor.fast) {
+  if (executor.IsFast()) {
     executor.Move();
   }
   executor.TurnLeft();
 }
-void ExecutorImpl::TurnRightCommand::DoOperate(
+void TurnRightCommand::DoOperate(
     ExecutorImpl &executor) const noexcept {
-  if (executor.fast) {
+  if (executor.IsFast()) {
     executor.Move();
   }
   executor.TurnRight();
 }
-void ExecutorImpl::FastCommand::DoOperate(
+void FastCommand::DoOperate(
     ExecutorImpl &executor) const noexcept {
   executor.Fast();
 }

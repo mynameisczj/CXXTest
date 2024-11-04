@@ -11,34 +11,7 @@ class ExecutorImpl final : public Executor {
   Pose pose;         // 汽车当前位置
   bool fast{false};  // 汽车是否处于加速状态
 
- private:
-  class ICommand {
-   public:
-    virtual ~ICommand() = default;
-    virtual void DoOperate(ExecutorImpl &executor) const noexcept = 0;
-  };
-  // 执行Move动作（M指令）
-  class MoveCommand final : public ICommand {
-   public:
-    void DoOperate(ExecutorImpl &executor) const noexcept;
-  };
-  // 执行TurnLeft动作（L指令）
-  class TurnLeftCommand final : public ICommand {
-   public:
-    void DoOperate(ExecutorImpl &executor) const noexcept;
-  };
-  // 执行TurnRight动作（R指令）
-  class TurnRightCommand final : public ICommand {
-   public:
-    void DoOperate(ExecutorImpl &executor) const noexcept;
-  };
-  // 执行Fast动作（F指令）
-  class FastCommand final : public ICommand {
-   public:
-    void DoOperate(ExecutorImpl &executor) const noexcept;
-  };
-
- private:
+ public:
   void Move(void) noexcept;       // 移动指令（M指令）
   void TurnLeft(void) noexcept;   // 左转指令（L指令）
   void TurnRight(void) noexcept;  // 右转指令（R指令）
