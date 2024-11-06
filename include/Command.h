@@ -7,9 +7,18 @@ class MoveCommand final {
  public:
   void operator()(PoseHandler &poseHandler) const noexcept {
     if (poseHandler.IsFast()) {
-      poseHandler.Move();
+      if (poseHandler.IsReverse()) {
+        poseHandler.Backward();
+      } else {
+        poseHandler.Forward();
+      }
     }
-    poseHandler.Move();
+
+    if (poseHandler.IsReverse()) {
+      poseHandler.Backward();
+    } else {
+      poseHandler.Forward();
+    }
   };
 };
 // 执行TurnLeft动作（L指令）
@@ -17,9 +26,18 @@ class TurnLeftCommand final {
  public:
   void operator()(PoseHandler &poseHandler) const noexcept {
     if (poseHandler.IsFast()) {
-      poseHandler.Move();
+      if (poseHandler.IsReverse()) {
+        poseHandler.Backward();
+      } else {
+        poseHandler.Forward();
+      }
     }
-    poseHandler.TurnLeft();
+
+    if (poseHandler.IsReverse()) {
+      poseHandler.TurnRight();
+    } else {
+      poseHandler.TurnLeft();
+    }
   };
 };
 // 执行TurnRight动作（R指令）
@@ -27,9 +45,18 @@ class TurnRightCommand final {
  public:
   void operator()(PoseHandler &poseHandler) const noexcept {
     if (poseHandler.IsFast()) {
-      poseHandler.Move();
+      if (poseHandler.IsReverse()) {
+        poseHandler.Backward();
+      } else {
+        poseHandler.Forward();
+      }
     }
-    poseHandler.TurnRight();
+
+    if (poseHandler.IsReverse()) {
+      poseHandler.TurnLeft();
+    } else {
+      poseHandler.TurnRight();
+    }
   };
 };
 // 执行Fast动作（F指令）
@@ -37,6 +64,14 @@ class FastCommand final {
  public:
   void operator()(PoseHandler &poseHandler) const noexcept {
     poseHandler.Fast();
+  };
+};
+
+// 执行Back动作（B指令）
+class ReverseCommand final {
+ public:
+  void operator()(PoseHandler &poseHandler) const noexcept {
+    poseHandler.Reverse();
   };
 };
 }  // namespace adas

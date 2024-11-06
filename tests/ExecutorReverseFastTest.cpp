@@ -23,7 +23,7 @@ TEST(
   // when
   executor->Execute("FBL");  // FM: F状态下Move
   // then
-  const Pose target{-1, 0, 'L'};
+  const Pose target{-1, 0, 'S'};
   ASSERT_EQ(target, executor->Query());
 }
 TEST(
