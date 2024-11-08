@@ -1,5 +1,7 @@
 #include "Direction.h"
 
+#include "Point.h"
+
 namespace adas {
 static const Direction direction[4] = {{0, 'E'}, {1, 'S'}, {2, 'W'}, {3, 'N'}};
 static const Point point[4] = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};  // ESWN
