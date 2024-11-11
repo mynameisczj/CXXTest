@@ -1,7 +1,7 @@
 #pragma once
 
+#include "..\core\PoseHandler.h"
 #include "ActionGroup.h"
-#include "PoseHandler.h"
 
 namespace adas {
 // 执行Move动作（M指令）

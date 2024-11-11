@@ -1,7 +1,7 @@
 #include "Command.h"
 
+#include "..\core\PoseHandler.h"
 #include "ActionGroup.h"
-#include "PoseHandler.h"
 
 namespace adas {
 ActionGroup MoveCommand::operator()(PoseHandler &poseHandler) const noexcept {
