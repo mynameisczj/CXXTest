@@ -2,16 +2,15 @@
 
 #include "PoseHandler.h"
 namespace adas {
-std::list<std::function<void(PoseHandler&)>> CmderFactory::GetCmders(
-    const std::string& commands) const noexcept {
-  std::list<std::function<void(PoseHandler&)>> funtionList;
+CmderList CmderFactory::GetCmders(const std::string& commands) const noexcept {
+  CmderList cmderList;
 
   for (const auto it : commands) {
     auto itr = cmderMap.find(it);
     if (itr != cmderMap.end()) {
-      funtionList.push_back((*itr).second);
+      cmderList.push_back((*itr).second);
     }
   }
-  return funtionList;
+  return cmderList;
 }
 }  // namespace adas

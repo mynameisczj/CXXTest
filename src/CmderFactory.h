@@ -7,8 +7,10 @@
 #include "Command.h"
 
 namespace adas {
+using Cmder = std::function<void(PoseHandler&)>;
+using CmderList = std::list<Cmder>;
 
-class CmderFactory {
+class CmderFactory final {
  public:
   CmderFactory(void) = default;
   ~CmderFactory(void) = default;
@@ -17,11 +19,10 @@ class CmderFactory {
   CmderFactory& operator=(const CmderFactory&) = delete;
 
  public:
-  std::list<std::function<void(PoseHandler&)>> GetCmders(
-      const std::string& commands) const noexcept;
+  CmderList GetCmders(const std::string& commands) const noexcept;
 
  private:
-  const std::unordered_map<char, std::function<void(PoseHandler&)>> cmderMap = {
+  const std::unordered_map<char, Cmder> cmderMap = {
       {'M', MoveCommand()}, {'L', TurnLeftCommand()}, {'R', TurnRightCommand()},
       {'F', FastCommand()}, {'B', ReverseCommand()},
   };
