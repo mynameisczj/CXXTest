@@ -16,11 +16,10 @@ Executor *Executor::NewExecutor(const Pose &pose) noexcept {
 }
 void ExecutorImpl::Execute(const std::string &commands) noexcept {
   const auto cmders = Singleton<CmderFactory>::Instance().GetCmders(commands);
-  std::for_each(
-      cmders.begin(), cmders.end(),
-      [this](const std::function<void(PoseHandler &)> &cmder) noexcept {
-        cmder(poseHandler);
-      });
+  std::for_each(cmders.begin(), cmders.end(),
+                [this](const Cmder &cmder) noexcept {
+                  cmder(poseHandler).DoOperate(poseHandler);
+                });
 }
 
 }  // namespace adas
