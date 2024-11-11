@@ -1,10 +1,12 @@
 #include "ExecutorImpl.h"
 
+#include <algorithm>
 #include <functional>
 #include <memory>
 #include <unordered_map>
 
-#include "Command.h"
+#include "CmderFactory.h"
+#include "Singleton.h"
 
 namespace adas {
 ExecutorImpl::ExecutorImpl(const Pose &pose) noexcept : poseHandler(pose) {}
@@ -13,17 +15,12 @@ Executor *Executor::NewExecutor(const Pose &pose) noexcept {
   return new (std::nothrow) ExecutorImpl(pose);  // C++17下有效
 }
 void ExecutorImpl::Execute(const std::string &commands) noexcept {
-  std::unordered_map<char, std::function<void(PoseHandler &)>> cmderMap = {
-      {'M', MoveCommand()}, {'L', TurnLeftCommand()}, {'R', TurnRightCommand()},
-      {'F', FastCommand()}, {'B', ReverseCommand()},
-  };
-
-  for (const auto cmd : commands) {
-    const auto it = cmderMap.find(cmd);
-    if (it != cmderMap.end()) {
-      it->second(poseHandler);
-    }
-  }
+  const auto cmders = Singleton<CmderFactory>::Instance().GetCmders(commands);
+  std::for_each(
+      cmders.begin(), cmders.end(),
+      [this](const std::function<void(PoseHandler &)> &cmder) noexcept {
+        cmder(poseHandler);
+      });
 }
 
 }  // namespace adas
