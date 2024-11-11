@@ -6,10 +6,19 @@ struct Pose {
   int x, y;      //[x,y]坐标
   char heading;  //[N,S,E,W]四个方向
 };
+// 车辆类型枚举
+enum class ExecutorType {
+  NORMAL,
+  SPORTS_CAR,
+  BUS,
+};
+
 // 驾驶动作执行接口
 class Executor {
  public:
-  static Executor *NewExecutor(const Pose &pose = {0, 0, 'N'}) noexcept;
+  static Executor *NewExecutor(
+      const Pose &pose = {0, 0, 'N'},
+      const ExecutorType executorType = ExecutorType::NORMAL) noexcept;
 
  public:
   Executor(void) = default;

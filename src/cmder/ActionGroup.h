@@ -20,11 +20,13 @@ class ActionGroup final {
  public:
   ActionGroup() = default;
   ~ActionGroup() = default;
-  explicit ActionGroup(const std::list<ActionType>& actions) noexcept;
+  explicit ActionGroup(const std::list<ActionType> &actions) noexcept;
+
+  ActionGroup &operator+=(const ActionGroup &rhs) noexcept;
 
  public:
   void PushAction(const ActionType) noexcept;
-  void DoOperate(PoseHandler&) const noexcept;
+  void DoOperate(PoseHandler &) const noexcept;
 
  private:
   std::list<ActionType> actions;

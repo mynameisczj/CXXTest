@@ -18,8 +18,8 @@ class PoseHandler final {
   void TurnRight(void) noexcept;    // 右转指令（R指令）
   void Fast(void) noexcept;         // 切换加速状态指令（F指令）
   void Reverse(void) noexcept;      // 切换倒车状态指令（B指令）
-  bool IsFast(void) noexcept;       // 查询是否处于高速状态
-  bool IsReverse(void) noexcept;    // 查询是否处于倒车状态
+  bool IsFast(void) const noexcept;       // 查询是否处于高速状态
+  bool IsReverse(void) const noexcept;    // 查询是否处于倒车状态
   Pose Query(void) const noexcept;  // 查询当前位置
  private:
   Point point;

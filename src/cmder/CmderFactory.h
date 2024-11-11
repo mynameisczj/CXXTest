@@ -8,7 +8,7 @@
 #include "Command.h"
 
 namespace adas {
-using Cmder = std::function<ActionGroup(PoseHandler&)>;
+using Cmder = std::function<ActionGroup(PoseHandler&,const CmderOrchestrator&)>;
 using CmderList = std::list<Cmder>;
 
 class CmderFactory final {
