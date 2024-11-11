@@ -30,4 +30,8 @@ class ReverseCommand final {
  public:
   ActionGroup operator()(PoseHandler &poseHandler) const noexcept;
 };
+class TurnRoundCommand final {
+ public:
+  ActionGroup operator()(PoseHandler &poseHandler) const noexcept;
+};
 }  // namespace adas

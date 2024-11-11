@@ -26,7 +26,7 @@ ActionGroup TurnLeftCommand::operator()(
   if (poseHandler.IsFast()) {
     actionGroup.PushAction(action1);
   }
-  
+
   const auto action2 = poseHandler.IsReverse()
                            ? ActionType::REVERSE_TURNLEFT_ACTION
                            : ActionType::TURNLEFT_ACTION;
@@ -60,5 +60,25 @@ ActionGroup ReverseCommand::operator()(
   ActionGroup actionGroup;
   actionGroup.PushAction(ActionType::BE_REVERSE_ACTION);
   return actionGroup;
+}
+
+ActionGroup TurnRoundCommand::operator()(
+    PoseHandler &poseHandler) const noexcept {
+  if (poseHandler.IsReverse()) {
+    return ActionGroup();
+  }
+  if (poseHandler.IsFast()) {
+    return ActionGroup({
+        ActionType::FORWARD_1_STEP_ACTION,
+        ActionType::TURNLEFT_ACTION,
+        ActionType::FORWARD_1_STEP_ACTION,
+        ActionType::TURNLEFT_ACTION,
+    });
+  }
+  return ActionGroup({
+      ActionType::TURNLEFT_ACTION,
+      ActionType::FORWARD_1_STEP_ACTION,
+      ActionType::TURNLEFT_ACTION,
+  });
 }
 }  // namespace adas
